@@ -1,6 +1,7 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
   const smoothScrollTo = useCallback((toY, duration = 600) => {
     const startY = window.pageYOffset;
     const distance = toY - startY;
@@ -37,7 +38,7 @@ export default function Navbar() {
   }, [smoothScrollTo]);
 
   return (
-    <nav className="backdrop-blur-sm bg-black/20 border-b border-white/5 sticky top-0 z-50">
+    <nav className="backdrop-blur-sm bg-white/5 border-b border-white/5 sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between py-3 px-6">
         <button
           type="button"
@@ -96,8 +97,68 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <button className="md:hidden steam-accent bg-white/5 p-2 rounded-lg border border-white/10" aria-label="menu">☰</button>
+        <button
+          type="button"
+          className="md:hidden steam-accent bg-white/5 p-2 rounded-lg border border-white/5"
+          aria-label="menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          ☰
+        </button>
       </div>
+      {isOpen && (
+        <div id="mobile-menu" className="md:hidden border-t border-white/5 backdrop-blur-sm bg-white/5">
+          <ul className="flex flex-col py-2 px-6 space-y-2">
+            <li>
+              <a
+                href="#hero"
+                onClick={(e) => { onNavClick(e, 'hero'); setIsOpen(false); }}
+                className="steam-link py-2"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                href="#about"
+                onClick={(e) => { onNavClick(e, 'about'); setIsOpen(false); }}
+                className="steam-link py-2"
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="#tech"
+                onClick={(e) => { onNavClick(e, 'tech'); setIsOpen(false); }}
+                className="steam-link py-2"
+              >
+                Tech Stack
+              </a>
+            </li>
+            <li>
+              <a
+                href="#experience"
+                onClick={(e) => { onNavClick(e, 'experience'); setIsOpen(false); }}
+                className="steam-link py-2"
+              >
+                Experience
+              </a>
+            </li>
+            <li>
+              <a
+                href="#projects"
+                onClick={(e) => { onNavClick(e, 'projects'); setIsOpen(false); }}
+                className="steam-link py-2"
+              >
+                Projects
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
     </nav>
   )
 }
