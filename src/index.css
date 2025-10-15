@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'FF DIN';
+  src: url('/fonts/FFDIN/FFDIN-Regular.woff2') format('woff2'),
+       url('/fonts/FFDIN/FFDIN-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FF DIN';
+  src: url('/fonts/FFDIN/FFDIN-Bold.woff2') format('woff2'),
+       url('/fonts/FFDIN/FFDIN-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body, #root {
+  height: 100%;
+  color: #e5e5e5;
+  font-family: 'FF DIN', 'Inter', sans-serif;
+  /* Disable CSS smooth scroll to prevent conflicts with JS animation */
+  scroll-behavior: auto;
+}
+
+/* Softly blur the background gradient without affecting foreground content */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: inherit; /* reuse the gradient */
+  filter: blur(18px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@font-face {
+  font-family: 'Cafeteria';
+  src: url('/fonts/Cafeteria-Bold.woff2') format('woff2'),
+       url('/fonts/Cafeteria-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.cafeteria-font {
+  font-family: 'Cafeteria', serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Optional: Steam-like bold heading utility */
+.steam-heading { font-weight: 700; letter-spacing: 0.01em; }
+
+.glass {
+  @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl p-6;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(102,192,244,0.5);
+}
+
+.glass:hover {
+  @apply bg-white/10 shadow-2xl;
+  transform: translateY(-5px); /* subtle lift on hover */
+}
+
+.steam-accent {
+  color: #66c0f4;
+}
+
+.steam-accent-bg {
+  background-color: #66c0f4;
+}
+
+.steam-link:hover {
+  color: #00adee;
+  text-shadow: 0 0 6px #00adee;
+}
+
+/* Hide native scrollbars for custom button-driven scrolling */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.no-scrollbar::-webkit-scrollbar { /* Chrome/Safari */
+  display: none;
+}
+
+/* Full-screen background video */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  filter: blur(5px);
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+#bg-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* dim the video */
+  z-index: -1;
+  pointer-events: none;
+}
+/* Optional: soft glow for headings on video */
+.steam-heading.steam-accent {
+  text-shadow: 0 0 8px #66c0f4;
+}
