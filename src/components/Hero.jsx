@@ -43,7 +43,7 @@ export default function Hero() {
           </svg>
         </a>
 
-        <a href="#" className="steam-link">
+        <a href="mailto:sijhayortega12@gmail.com" className="steam-link">
           <svg className="w-15 h-15" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/>
           </svg>
